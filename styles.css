@@ -25,6 +25,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 112px;
 }
 
 body {
@@ -120,7 +121,7 @@ button {
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 34px 56px;
   min-height: 100svh;
-  padding: 22px var(--gutter) 42px;
+  padding: 112px var(--gutter) 42px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background:
@@ -150,11 +151,23 @@ button {
 
 .topbar {
   grid-column: 1 / -1;
+  position: fixed;
+  top: 16px;
+  left: var(--gutter);
+  right: var(--gutter);
+  z-index: 45;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 24px;
   min-height: 56px;
+  padding: 7px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 999px;
+  background: rgba(7, 17, 31, 0.72);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   animation: fadeDown 520ms var(--ease-out) both;
 }
 
@@ -285,6 +298,8 @@ button {
 }
 
 .hero-copy {
+  grid-column: 1;
+  grid-row: 2;
   align-self: center;
   max-width: 650px;
   animation: fadeRight 680ms var(--ease-out) 100ms both;
@@ -1035,7 +1050,13 @@ button {
   .hero-shell {
     grid-template-columns: minmax(0, 1fr);
     min-height: auto;
+    padding-top: 118px;
     padding-bottom: 72px;
+  }
+
+  .hero-copy {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .hero-visual {
@@ -1083,24 +1104,45 @@ button {
     --gutter: 24px;
   }
 
+  html {
+    scroll-padding-top: 138px;
+  }
+
   .topbar {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 12px;
+    align-items: center;
+    border-radius: 26px;
+    padding: 8px;
   }
 
   .brand-mark {
     width: fit-content;
   }
 
-  .nav-left,
-  .nav-right {
+  .nav-left {
+    grid-column: 1 / -1;
+    grid-row: 2;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-left::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-right {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
   }
 
   .hero-shell {
     gap: 28px;
-    padding-top: 20px;
+    padding-top: 148px;
   }
 
   .hero-copy h1 {
@@ -1134,6 +1176,29 @@ button {
 @media (max-width: 560px) {
   :root {
     --gutter: 20px;
+  }
+
+  html {
+    scroll-padding-top: 132px;
+  }
+
+  .topbar {
+    top: 10px;
+  }
+
+  .brand-mark {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    min-height: 34px;
+    padding: 0 12px;
+  }
+
+  .contact-pill {
+    display: none;
   }
 
   .hero-actions,
